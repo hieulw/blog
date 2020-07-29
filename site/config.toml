@@ -25,7 +25,20 @@ link = "/about"
 name = "RSS"
 link = "/index.xml"
 
-# [params]
+[params]
 # disqus = "joway" # disqus account name
-# extraHead = ''
-# mainSections = ["posts"]
+extraHead = '<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>'
+extraFooterScript = '''
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+'''
+mainSections = ["posts"]
