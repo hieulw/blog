@@ -1,21 +1,18 @@
-+++
-title = "xsser - 3kCTF"
-description = ""
-tags = [
-    "xss",
-    "web",
-    "php",
-]
-date = "2020-07-29"
-categories = [
-    "CTF",
-]
-menu = "main"
-+++
+---
+title: xsser - 3kCTF
+date: 2020-07-29
+description: ""
+categories:
+  - CTF
+tags:
+  - xss
+  - web
+  - php
+menu: main
+---
+Nguồn: <https://ctftime.org/writeup/22594>
 
-Nguồn: [https://ctftime.org/writeup/22594](https://ctftime.org/writeup/22594)
-
-Truy cập vào đường link [http://xsser.3k.ctf.to/](http://xsser.3k.ctf.to/) trang sẽ tự chuyển hướng thành [http://xsser.3k.ctf.to/?**login=O:4:"User":2:{s:4:"name";s:5:"guest";s:7:"isAdmin";b:0;}**](http://xsser.3k.ctf.to/?login=O:4:"User":2:{s:4:"name";s:5:"guest";s:7:"isAdmin";b:0;})
+Truy cập vào đường link <http://xsser.3k.ctf.to/> trang sẽ tự chuyển hướng thành [http://xsser.3k.ctf.to/?**login=O:4:"User":2:{s:4:"name";s:5:"guest";s:7:"isAdmin";b:0;}**](http://xsser.3k.ctf.to/?login=O:4:"User":2:{s:4:"name";s:5:"guest";s:7:"isAdmin";b:0;})
 
 và đây là nội dung file index.php
 
@@ -80,11 +77,11 @@ Dựa trên [unserialize()#66147](https://www.php.net/manual/en/function.seriali
 
 Nhận thấy `htmlentities()` chỉ thực thi khi phát hiện `'script'` truyền vào. Vậy ta sẽ dùng payload inline xss: `<svg/onload=alert(1)>` truyền vào `$_GET['new']`
 
-Truy cập: [http://xsser.3k.ctf.to/?login=O:8:"Iterator":0:{}&new=<svg/onload=alert(1)>](<http://xsser.3k.ctf.to/?login=O:8:%22Iterator%22:0:%7B%7D&new=%3Csvg/onload=alert(1)%3E>)
+Truy cập: [http://xsser.3k.ctf.to/?login=O:8:"Iterator":0:{}&new=<svg/onload=alert(1)>](http://xsser.3k.ctf.to/?login=O:8:%22Iterator%22:0:%7B%7D&new=%3Csvg/onload=alert(1)%3E)
 
 Kết quả:
 
-![xsser%20-%203kCTF%20a9ddc8d8f1aa4181adb95f6ef4fe0de7/Untitled.png](xsser%20-%203kCTF%20a9ddc8d8f1aa4181adb95f6ef4fe0de7/Untitled.png)
+![XSS exploited](img/untitled.png)
 
 Vậy là chạy được script tiêm vào. Nhưng script bị giới hạn chỉ 32 kí tự, và không dùng được script tag. Tìm payload ngắn nhất trên google ra được [bài này](https://brutelogic.com.br/blog/shortest-reflected-xss-possible/).
 
@@ -102,7 +99,7 @@ Mình chọn cách 2 vì đơn giản hơn. Việc còn lại là lấy được
 
 Như chúng ta thấy cookie chỉ được set khi địa chỉ truy cập là `127.0.0.1` tức là `localhost` vậy khi viết script chúng ta sẽ trỏ tới `127.0.0.1` thay vì `xsser.3k.ctf.to`
 
-Bạn cần host script của bạn và submit vào [http://xsser.3k.ctf.to/req.php](http://xsser.3k.ctf.to/req.php) để admin truy cập.
+Bạn cần host script của bạn và submit vào <http://xsser.3k.ctf.to/req.php> để admin truy cập.
 
 Mình thích dùng [repl.it](http://repl.it) để host code, vì thằng này có thể chạy được `http` và cả `https` mà không bị chuyển hướng như [codesandbox.io](http://codesandbox.io). Và tất nhiên [webhook.site](https://webhook.site/) chuyển hướng cookie về và log lại
 
@@ -122,10 +119,10 @@ Mình thích dùng [repl.it](http://repl.it) để host code, vì thằng này c
 
 Copy link để submit nhớ bỏ `https` Link có dạng [http://ImmediateLavishCallbacks--five-nine.repl.co](https://immediatelavishcallbacks--five-nine.repl.co/)
 
-![xsser%20-%203kCTF%20a9ddc8d8f1aa4181adb95f6ef4fe0de7/Untitled%201.png](xsser%20-%203kCTF%20a9ddc8d8f1aa4181adb95f6ef4fe0de7/Untitled%201.png)
+![Submit XSS to Admin](img/untitled-1.png)
 
 Có một điều thú vị là script sẽ chạy nếu như click thẳng vào link. Còn nhập link vào trình duyệt thì Chrome sẽ tự phát hiện popup và chặn. Vậy nên `window.open()` sẽ không dùng được. Các bạn có thể dùng cách khác là tạo `<a href={link xss} target={window.name}>` và dùng javascript để click vào link đó.
 
 Như vậy là thành công
 
-![xsser%20-%203kCTF%20a9ddc8d8f1aa4181adb95f6ef4fe0de7/Untitled%202.png](xsser%20-%203kCTF%20a9ddc8d8f1aa4181adb95f6ef4fe0de7/Untitled%202.png)
+![Get cookie successfully](img/untitled-2.png)
