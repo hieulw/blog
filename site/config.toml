@@ -1,9 +1,31 @@
 baseurl = "/"
-languageCode = "en-us"
-languageLang = "en"
-title = "Homepage"
+languageCode = "vi-vn"
+languageLang = "vi"
+title = "Hiếu's Blog"
+theme = "yinyang"
+
+[author]
+name = "Hiếu Lê"
+homepage = "https://hieulw.netlify.com"
 
 # RSS, categories and tags disabled for an easy start
 # See configuration options for more details: 
 # https://gohugo.io/getting-started/configuration/#toml-configuration
-disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+# disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+
+[[params.socials]]
+name = "Github"
+link = "https://github.com/hieulw"
+
+[[params.socials]]
+name = "About"
+link = "/about"
+
+[[params.socials]]
+name = "RSS"
+link = "/index.xml"
+
+# [params]
+# disqus = "joway" # disqus account name
+# extraHead = ''
+# mainSections = ["posts"]
