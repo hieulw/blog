@@ -81,7 +81,7 @@ Truy cập: [http://xsser.3k.ctf.to/?login=O:8:"Iterator":0:{}&new=<svg/onload=a
 
 Kết quả:
 
-![XSS exploited](img/untitled.png)
+![XSS exploited](/img/untitled.png)
 
 Vậy là chạy được script tiêm vào. Nhưng script bị giới hạn chỉ 32 kí tự, và không dùng được script tag. Tìm payload ngắn nhất trên google ra được [bài này](https://brutelogic.com.br/blog/shortest-reflected-xss-possible/).
 
@@ -119,10 +119,10 @@ Mình thích dùng [repl.it](http://repl.it) để host code, vì thằng này c
 
 Copy link để submit nhớ bỏ `https` Link có dạng [http://ImmediateLavishCallbacks--five-nine.repl.co](https://immediatelavishcallbacks--five-nine.repl.co/)
 
-![Submit XSS to Admin](img/untitled-1.png)
+![Submit XSS to Admin](/img/untitled-1.png)
 
 Có một điều thú vị là script sẽ chạy nếu như click thẳng vào link. Còn nhập link vào trình duyệt thì Chrome sẽ tự phát hiện popup và chặn. Vậy nên `window.open()` sẽ không dùng được. Các bạn có thể dùng cách khác là tạo `<a href={link xss} target={window.name}>` và dùng javascript để click vào link đó.
 
 Như vậy là thành công
 
-![Get cookie successfully](img/untitled-2.png)
+![Get cookie successfully](/img/untitled-2.png)
