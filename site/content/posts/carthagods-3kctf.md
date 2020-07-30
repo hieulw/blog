@@ -12,7 +12,7 @@ Nguồn: <https://www.sousse.love/post/carthagods-3kctf2020/index.html>
 
 Source `index.php` được cho sẵn, mình sẽ lọc bớt đoạn không cần thiết
 
-```phtml
+```php
 <a href="./baal">Baal</a>
 <a href="./tanit">Tanit</a>
 <a href="./dido">Dido</a>
