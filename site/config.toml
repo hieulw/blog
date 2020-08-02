@@ -1,11 +1,11 @@
 baseurl = "/"
 languageCode = "vi-vn"
 languageLang = "vi"
-title = "Hiếu's Blog"
+title = "Hiếu - Yet Another Coder"
 theme = "yinyang"
 
 [author]
-name = "Hiếu Lê"
+name = "Hiếu"
 homepage = "https://hieulw.netlify.com"
 
 # RSS, categories and tags disabled for an easy start
