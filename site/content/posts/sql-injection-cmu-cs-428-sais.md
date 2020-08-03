@@ -20,7 +20,7 @@ Thông báo login success, chứng tỏ đoạn sql được thực thi. Tuy nhi
 
 ![](/img/2020-08-03_10-39.png)
 
-Chúng ta sẽ sử dụng `sqlmap` để khai thác SQL Injection. SQLmap có sẵn các payload để tiêm vào và dựa trên việc server có trả về lỗi không để khai thác tiếp.
+Chúng ta sẽ sử dụng `sqlmap` để khai thác SQL Injection. SQLmap có sẵn các payload để tiêm vào website, dựa trên việc server có trả về lỗi không để dự đoán kết quả và khai thác tiếp.
 
 ![](/img/2020-08-03_10-45.png)
 
@@ -33,7 +33,7 @@ sqlmap-shell> -u https://103.7.177.38/ --forms --batch
 
 ![](/img/2020-08-03_10-58.png)
 
-Như vậy `sqlmap` đã tự phát hiện form và test từng field trong form để khai thác sql injection. Mặc định khi chúng ta không chọn options nào để khai thác thì `sqlmap` chỉ in ra thông tin cơ bản của Database như tên hệ quản trị và version.
+Như vậy `sqlmap` đã tự phát hiện form và test từng field trong form để khai thác sql injection. Mặc định khi chúng ta không chọn options nào để khai thác thì `sqlmap` chỉ in ra thông tin cơ bản của Database như tên hệ quản trị và version. Chúng để ý thông báo website đang dùng firewall, chúng ta có thể bypass waf bằng cách dùng `--tamper`. Đọc thêm bài viết [SQLMap Tamper Scripts (SQL Injection and WAF bypass)](https://medium.com/@drag0n/sqlmap-tamper-scripts-sql-injection-and-waf-bypass-c5a3f5764cb3) để biết thêm về tác dụng tamper script.
 
 Giờ chúng ta thử khai thác thêm như in ra các tên databases, ta dùng `--dbs`
 
@@ -68,3 +68,17 @@ sqlmap-shell> -u https://103.7.177.38/ --forms --batch -D labsql -T user --colum
 ![](/img/2020-08-03_11-17.png)
 
 Như vậy là ta có thể thấy được password của admin là `mypasssword#@!$1234`.
+
+Sau khi dump xong ta có thể dùng `--sql-shell` để truy cập vào hệ quản trị và chỉnh sửa. Ví dụ ở đây mình đã sửa password lại.
+
+```shell
+sqlmap-shell> -u https://103.7.177.38/ --forms --batch --sql-shell
+
+...
+
+sql-shell> update [labsql].[dbo].[user] set password="Ưhat súp" where username='admin';
+```
+
+Và đây là kết quả.
+
+![](/img/2020-08-03_17-08.png)
