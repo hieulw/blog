@@ -33,7 +33,9 @@ sqlmap-shell> -u https://103.7.177.38/ --forms --batch
 
 ![](/img/2020-08-03_10-58.png)
 
-Như vậy `sqlmap` đã tự phát hiện form và test từng field trong form để khai thác sql injection. Mặc định khi chúng ta không chọn options nào để khai thác thì `sqlmap` chỉ in ra thông tin cơ bản của Database như tên hệ quản trị và version. Chúng để ý thông báo website đang dùng firewall, chúng ta có thể bypass waf bằng cách dùng `--tamper`. Đọc thêm bài viết [SQLMap Tamper Scripts (SQL Injection and WAF bypass)](https://medium.com/@drag0n/sqlmap-tamper-scripts-sql-injection-and-waf-bypass-c5a3f5764cb3) để biết thêm về tác dụng tamper script.
+Như vậy `sqlmap` đã tự phát hiện form và test từng field trong form để khai thác sql injection. Mặc định khi chúng ta không chọn options nào để khai thác thì `sqlmap` chỉ in ra thông tin cơ bản của Database như tên hệ quản trị và version. Hãy để ý thông báo phát hiện website đang dùng firewall, chúng ta có thể bypass waf bằng cách dùng `--tamper`.
+
+Đọc thêm bài viết [SQLMap Tamper Scripts (SQL Injection and WAF bypass)](https://medium.com/@drag0n/sqlmap-tamper-scripts-sql-injection-and-waf-bypass-c5a3f5764cb3) để biết thêm về tác dụng tamper script. Nôm na là nó sẽ encode payload thành một chuỗi có định dạng khác để firewall không phát hiện ra nội dung mã độc và sau khi bypass firewall thì nó vẫn thực thi được ở server.
 
 Giờ chúng ta thử khai thác thêm như in ra các tên databases, ta dùng `--dbs`
 
