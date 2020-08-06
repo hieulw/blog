@@ -3,7 +3,7 @@ title: php shell - CMU-CS 428 SAIS
 date: 2020-08-06T07:56:37.880Z
 draft: false
 categories:
-  - ctf
+  - CTF
 tags:
   - php
   - shell
